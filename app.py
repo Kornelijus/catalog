@@ -16,7 +16,10 @@ engine = create_engine("postgresql://catalog:123456@localhost/catalog")
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-client_secrets = json.loads(open("client_secrets.json", "r").read())
+client_secrets = json.loads(
+    open(
+        "/var/www/catalog/client_secrets.json",
+        "r").read())
 CLIENT_ID = client_secrets["web"]["client_id"]
 
 
@@ -61,8 +64,8 @@ def google_login():
     return 401 with the error message.
     '''
     try:
-        oauth_flow = flow_from_clientsecrets("client_secrets.json",
-                                             scope="")
+        oauth_flow = flow_from_clientsecrets(
+            "/var/www/catalog/client_secrets.json", scope="")
         oauth_flow.redirect_uri = "postmessage"
         credentials = oauth_flow.step2_exchange(auth_code)
     except FlowExchangeError:
