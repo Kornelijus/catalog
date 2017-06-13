@@ -352,4 +352,4 @@ if __name__ == "__main__":
     Time to get hacked!
     '''
     app.secret_key = "123456"
-    app.run(host="localhost")
+    app.run(host="52.29.145.13")
