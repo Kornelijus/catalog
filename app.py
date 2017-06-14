@@ -12,7 +12,7 @@ import requests
 import json
 
 app = Flask(__name__)
-engine = create_engine("postgresql://catalog:123456@localhost/catalog")
+engine = create_engine("postgresql://catalog_user:123456@localhost/catalog")
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
